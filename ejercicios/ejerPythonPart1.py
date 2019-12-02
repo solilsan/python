@@ -97,17 +97,31 @@ def ejer12(palabra=""):
     else:
         print(palabra, "no es un políndromo.")
 
-def ejer13(count=0):
-    n1=0
-    n2=1
-    for i in range(0, count):
-        if i == 0:
-            print(0)
-        else:
-            n2 = n1 + n2
-            n1 = n2 - n1
-            print(n1)
+def ejer13(n = 0):
+     """
+     13. Crea un programe que muestre X números de la secuencia de Fibonacci.
+     """
+     a, b = 0,1
+     for i in range(n):
+          print(a, end=' ')
+          a, b = b, a + b
 
+def ejer14():
+     """
+     14. Crea un programa que pida por pantalla tu nombre y tu edad. El programa mostrará por
+     pantalla “Hola NOMBRE, naciste en el año XXXX”. → import datetime
+     """
+     import datetime
+     nombre = "Alex" #input("¿Cuál es tú nombre?\n")
+     edad = 21 #input("¿Cuál es tú edad?\n")
+     print("Hola", nombre, "naciste en el año", datetime.datetime.now().year-edad)
 
-
-ejer13(10)
+def ejer15():
+     """
+     15. Crea un programa llamado “Dados”, que simule una tirada de dos dados de 6 caras. Debe
+     mostrar el resultado de los dos dados. → import random
+     """
+     import random
+     dado1 = random.randrange(1, 7, 1)
+     dado2 = random.randrange(1, 7, 1)
+     print(dado1, dado2)
