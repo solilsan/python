@@ -1,9 +1,37 @@
 from subprocess import call
 import os
+import re
 
 def clear(): 
     # check and make call for specific operating system 
     _ = call('clear' if os.name =='posix' else 'cls') 
+
+def verificarEmail(email = ""):
+
+    pattern = re.compile('^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$')
+    result = pattern.match(email)
+
+    if result:
+
+        return True
+
+    else:
+
+        return False
+
+def email(email = ""):
+
+    while True:
+    
+            if(verificarEmail(email)):
+    
+                return email
+                break
+    
+            else:
+                
+                email = str(input("Introduce un email.\n"))
+                clear()
 
 def validarNombre(nombre = ""):
 
@@ -24,10 +52,7 @@ def validarNombre(nombre = ""):
 
     return valido
 
-def nombre():
-
-    nombre = str(input("Introduce un nombre.\n"))
-    clear()
+def nombre(nombre = ""):
 
     while True:
 
@@ -83,27 +108,7 @@ def generardorPassword(rango = 0, mi = False, ma = False, num = False, sib = Fal
         print("Elige por lo menos una opción.\n")
         return False
 
-def password():
-
-    longitud = int(input("1-Longitud de contraseña (número).\n"))
-
-    minus = False
-    if str(input("¿Quiéres minúsculas (si o no)?\n")).upper() == "SI":
-        minus = True
-    
-    mayus = False
-    if str(input("¿Quiéres mayúsculas (si o no)?\n")).upper() == "SI":
-        mayus = True
-    
-    nums = False
-    if str(input("¿Quiéres números (si o no)?\n")).upper() == "SI":
-        nums = True
-    
-    sibs = False
-    if str(input("¿Quiéres símbolos (si o no)?\n")).upper() == "SI":
-        sibs = True
-
-    clear()
+def password(longitud, minus, mayus, nums, sibs):
 
     password = generardorPassword(longitud, minus, mayus, nums, sibs)
 
@@ -111,7 +116,6 @@ def password():
 
         if(password != False):
 
-            #print("Nivel de contraseña: "+evaluarPassword(nivelPassword))
             return password
             break
 
@@ -200,27 +204,69 @@ continuar = True
 
 while continuar:
 
-    nombre = nombre()
-    password = password()
-    print("Nivel de contraseña: " + nivelPassword(password))
-
-    usu = Usuario(nombre, password)
+    print("Nuevo usuario.\n")
+    iNombre = str(input("Introduce un nombre.\n"))
 
     comprobar = False
     for i in datos:
     
-        if i.nombre == usu.nombre:
+        if i.nombre == nombre(iNombre):
             comprobar = True
     
     if comprobar:
+
+        clear()
         print("Ya exite ese nombre.\n")
+
     else:
+
+        clear()
+
+        print("Generador de contraseña.\n")
+
+        longitud = int(input("1-Longitud de contraseña (número).\n"))
+
+        minus = False
+        if str(input("¿Quiéres minúsculas (si o no)?\n"))   .upper() == "SI":
+            minus = True
+
+        mayus = False
+        if str(input("¿Quiéres mayúsculas (si o no)?\n"))   .upper() == "SI":
+            mayus = True
+
+        nums = False
+        if str(input("¿Quiéres números (si o no)?\n")).upper    () == "SI":
+            nums = True
+
+        sibs = False
+        if str(input("¿Quiéres símbolos (si o no)?\n"))   .upper() == "SI":
+            sibs = True
+
+        clear()
+
+        password = password(longitud, minus, mayus, nums, sibs)
+
+        print("Contraseña: " + password + "\n" + "Nivel de contraseña: " + nivelPassword(password) + "\n")
+
+        iEmail = str(input("Introduce un email.\n"))
+
+        iEmail = email(iEmail)
+
+        clear()
+
+        usu = Usuario(nombre(iNombre), password)
+
         datos.append(usu)
 
-    if str(input("¿Quiéres introducir otro usuario?\n")).upper() == "SI":
-        continuar = True
-    else:
-        continuar = False
+        if str(input("¿Quiéres introducir otro usuario (si o no)?\n")).upper() == "SI":
+
+          clear()
+          continuar = True
+
+        else:
+
+          clear()
+          continuar = False
 
 for i in datos:
   print(i.nombre)
