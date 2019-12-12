@@ -139,7 +139,7 @@ def password(longitud, minus, mayus, nums, sibs):
             if str(input("¿Quiéres símbolos (si o no)?\n")).upper() == "SI":
                 sibs = True
                 
-            clear()
+            #clear()
 
             password = generardorPassword(longitud, minus, mayus, nums, sibs)
 
@@ -215,12 +215,12 @@ while continuar:
     
     if comprobar:
 
-        clear()
+        #clear()
         print("Ya exite ese nombre.\n")
 
     else:
 
-        clear()
+        #clear()
 
         print("Generador de contraseña.\n")
 
@@ -242,7 +242,7 @@ while continuar:
         if str(input("¿Quiéres símbolos (si o no)?\n"))   .upper() == "SI":
             sibs = True
 
-        clear()
+        #clear()
 
         password = password(longitud, minus, mayus, nums, sibs)
 
@@ -252,7 +252,7 @@ while continuar:
 
         iEmail = email(iEmail)
 
-        clear()
+        #clear()
 
         usu = Usuario(nombre(iNombre), password)
 
@@ -260,12 +260,12 @@ while continuar:
 
         if str(input("¿Quiéres introducir otro usuario (si o no)?\n")).upper() == "SI":
 
-          clear()
+          #clear()
           continuar = True
 
         else:
 
-          clear()
+          #clear()
           continuar = False
 
 for i in datos:
